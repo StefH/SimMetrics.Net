@@ -4,7 +4,7 @@
         "NUnit": "3.6.0",
         "dotnet-test-nunit": "3.4.0-beta-3",
 
-        "SimMetrics.Net": { "target": "project" }
+        "SimMetrics.Net": "1.0.1"
     },
 
     "testRunner": "nunit",
