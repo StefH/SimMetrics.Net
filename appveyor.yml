@@ -20,15 +20,15 @@ environment:
 
 build_script:
 - appveyor-retry dotnet restore .\src\SimMetrics.Net -v Minimal
-- appveyor-retry dotnet restore .\test\SimMetrics.Net.Tests  -v Minimal
+- appveyor-retry dotnet restore .\tests\SimMetrics.Net.Tests  -v Minimal
 
 - dotnet build .\src\SimMetrics.Net\project.json -c %CONFIGURATION%
-- dotnet build .\test\SimMetrics.Net.Tests\project.json -c %CONFIGURATION%
+- dotnet build .\tests\SimMetrics.Net.Tests\project.json -c %CONFIGURATION%
 
 - dotnet pack -c Release --no-build --version-suffix %LABEL% -o .\artifacts .\src\SimMetrics.Net\project.json
 
 test_script:
-- dotnet test -c %CONFIGURATION% --no-build .\test\SimMetrics.Net.Tests
+- dotnet test -c %CONFIGURATION% --no-build .\tests\SimMetrics.Net.Tests
 
 artifacts:
 - path: artifacts\**\*.*
