@@ -33,4 +33,4 @@ artifacts:
 - path: artifacts\**\*.*
 
 cache:
-- packages
+- '%USERPROFILE%\.nuget\packages'
