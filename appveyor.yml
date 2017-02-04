@@ -1,0 +1,37 @@
+os: Visual Studio 2015
+
+version: 1.0.0.{build}
+
+configuration:
+- Debug
+- Release
+
+platform: Any CPU
+
+init:
+- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+
+install:
+- ps: Start-FileDownload 'https://download.microsoft.com/download/0/A/3/0A372822-205D-4A86-BFA7-084D2CBE9EDF/DotNetCore.1.0.1-SDK.1.0.0.Preview2-003133-x64.exe'
+- cmd: DotNetCore.1.0.1-SDK.1.0.0.Preview2-003133-x64 /quiet
+
+environment:
+  PATH: $(PATH);$(PROGRAMFILES)\dotnet\
+
+build_script:
+- appveyor-retry dotnet restore .\src\SimMetrics.Net -v Minimal
+- appveyor-retry dotnet restore .\test\SimMetrics.Net.Tests  -v Minimal
+
+- dotnet build .\src\SimMetrics.Net\project.json -c %CONFIGURATION%
+- dotnet build .\test\SimMetrics.Net.Tests\project.json -c %CONFIGURATION%
+
+- dotnet pack -c Release --no-build --version-suffix %LABEL% -o .\artifacts .\src\SimMetrics.Net\project.json
+
+test_script:
+- dotnet test -c %CONFIGURATION% --no-build .\test\SimMetrics.Net.Tests
+
+artifacts:
+- path: artifacts\**\*.*
+
+cache:
+- '%USERPROFILE%\.nuget\packages'
