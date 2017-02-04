@@ -8,7 +8,8 @@ SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtei
 Supported frameworks are:
 
 - .NET 2.0
-- .NET 3.5 to .NET 4.6.x
+- .NET 3.5
+- .NET 4.5 to .NET 4.6.x
 - .NETStandard 1.0 to .NETStandard 1.6 (including portable, windows phone and uap)
 
 

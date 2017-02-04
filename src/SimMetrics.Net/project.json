@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0.0",
+    "version": "1.0.1.0",
     "title": "SimMetrics.Net",
     "description": "SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Chapman).",
     "authors": [ "Hamed Fathi", "Stef Heyenrath" ],
@@ -14,7 +14,7 @@
         },
         "projectUrl": "https://github.com/StefH/SimMetrics.Net",
         "licenseUrl": "https://raw.githubusercontent.com/StefH/SimMetrics.Net/master/LICENSE",
-        "releaseNotes": "Initial release"
+        "releaseNotes": "Also added net45"
     },
 
     "dependencies": {
@@ -32,11 +32,13 @@
         },
         "net35": {
         },
+        "net45": {
+        },
         "netstandard1.0": {
             "dependencies": {
                 "System.Collections": "4.3.0",
-                "System.Runtime.Extensions" : "4.3.0"
-            } 
+                "System.Runtime.Extensions": "4.3.0"
+            }
         }
     }
 }
