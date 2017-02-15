@@ -30,7 +30,7 @@ test_script:
 
 after_test:
   - nuget.exe install OpenCover -ExcludeVersion
-  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:"\".\tests\SimMetrics.Net.Tests\bin\Release\net452\SimMetrics.Net.Tests.dll\" --result=myresults.xml;format=AppVeyor" -returntargetcode -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
+  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:"\".\tests\SimMetrics.Net.Tests\bin\Release\netcoreapp1.0\SimMetrics.Net.Tests.dll\" --result=myresults.xml;format=AppVeyor" -returntargetcode -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
