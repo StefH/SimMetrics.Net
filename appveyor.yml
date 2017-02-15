@@ -31,10 +31,12 @@ test_script:
 
 after_test:
 - nuget install opencover -ExcludeVersion -OutputDirectory %APPVEYOR_BUILD_FOLDER%\tools
-- %APPVEYOR_BUILD_FOLDER%\tools\OpenCover\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:"/noresults /noisolation /testcontainer:"".\tests\SimMetrics.Net.Tests\bin\Debug\SimMetrics.Net.Tests.dll" -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\SimMetrics.Net_coverage.xml
-- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-- pip install codecov
-- codecov -f "SimMetrics.Net_coverage.xml"
+
+    %APPVEYOR_BUILD_FOLDER%\tools\OpenCover\tools\OpenCover.Console.exe -output:"coverage.xml" -target:"vstest.console.exe" -targetargs:"/logger:Appveyor /testcontainer:"".\tests\SimMetrics.Net.Tests\bin\Debug\SimMetrics.Net.Tests.dll" -excludebyattribute:*ExcludeFromCodeCoverage* -register:user -skipautoprops -returntargetcode
+
+    C:\Python35-x64\python.exe -m pip install codecov
+
+    C:\Python35-x64\Scripts\codecov -f coverage.xml
 
 artifacts:
 - path: artifacts\**\*.*
