@@ -31,7 +31,7 @@ test_script:
 after_test:
 - nuget install opencover -ExcludeVersion -OutputDirectory %APPVEYOR_BUILD_FOLDER%\tools
 
-    %APPVEYOR_BUILD_FOLDER%\tools\OpenCover\tools\OpenCover.Console.exe-register:user -target:nunit3-console.exe -targetargs:"/noresults /noisolation /testcontainer:"".\tests\SimMetrics.Net.Tests\bin\Release\SimMetrics.Net.Tests.dll" -filter:"+[SimMetrics.Net]*  -[SimMetrics.Net]SimMetrics.Net.Properties.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\coverage.xml
+    %APPVEYOR_BUILD_FOLDER%\tools\OpenCover\OpenCover.Console.exe-register:user -target:"nunit3-console.exe" -targetargs:"/noresults /noisolation /testcontainer:"".\tests\SimMetrics.Net.Tests\bin\Release\SimMetrics.Net.Tests.dll" -filter:"+[SimMetrics.Net]*  -[SimMetrics.Net]SimMetrics.Net.Properties.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\coverage.xml
 
     C:\Python35-x64\python.exe -m pip install codecov
 
