@@ -29,11 +29,12 @@ build_script:
 test_script:
 - dotnet test -c %CONFIGURATION% --no-build .\tests\SimMetrics.Net.Tests
 
-after_test: 
-    - .\packages\OpenCover.4.6.519\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:"/noresults /noisolation /testcontainer:"".\tests\SimMetrics.Net.Tests\bin\Debug\SimMetrics.Net.Tests.dll" -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\SimMetrics.Net_coverage.xml
-    - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
-    - pip install codecov
-    - codecov -f "SimMetrics.Net_coverage.xml"
+after_test:
+- nuget install opencover -ExcludeVersion -OutputDirectory %APPVEYOR_BUILD_FOLDER%\tools
+- %APPVEYOR_BUILD_FOLDER%\tools\OpenCover\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe -targetargs:"/noresults /noisolation /testcontainer:"".\tests\SimMetrics.Net.Tests\bin\Debug\SimMetrics.Net.Tests.dll" -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\SimMetrics.Net_coverage.xml
+- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+- pip install codecov
+- codecov -f "SimMetrics.Net_coverage.xml"
 
 artifacts:
 - path: artifacts\**\*.*
