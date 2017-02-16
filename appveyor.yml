@@ -3,7 +3,7 @@ os: Visual Studio 2015
 version: 1.0.0.{build}
 
 configuration:
-- Release
+- Debug
 
 platform: Any CPU
 
@@ -16,6 +16,8 @@ install:
 
 environment:
   PATH: $(PATH);$(PROGRAMFILES)\dotnet\
+  COVERALLS_REPO_TOKEN:
+    secure: OnGre4D7L1RUh2CghTv8SsxdCJNfhDHKI
 
 build_script:
 - appveyor-retry dotnet restore .\src\SimMetrics.Net
