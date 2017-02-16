@@ -1,9 +1,11 @@
 # SimMetrics.Net
 SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Chapman).
 
-[![NuGet Badge](https://buildstats.info/nuget/SimMetrics.Net)](https://www.nuget.org/packages/SimMetrics.Net)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/lleh586owv1ee08l?svg=true)](https://ci.appveyor.com/project/StefH/simmetrics-net)
+| Info |
+| - |
+| [![Build status](https://ci.appveyor.com/api/projects/status/lleh586owv1ee08l?svg=true)](https://ci.appveyor.com/project/StefH/simmetrics-net) |
+| [![codecov](https://codecov.io/gh/StefH/SimMetrics.Net/branch/master/graph/badge.svg)](https://codecov.io/gh/StefH/SimMetrics.Net) |
+| [![NuGet Badge](https://buildstats.info/nuget/SimMetrics.Net)](https://www.nuget.org/packages/SimMetrics.Net) |
 
 Supported frameworks are:
 
