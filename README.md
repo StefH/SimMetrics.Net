@@ -5,6 +5,7 @@ SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtei
 | ---- |
 | [![Build status](https://ci.appveyor.com/api/projects/status/lleh586owv1ee08l?svg=true)](https://ci.appveyor.com/project/StefH/simmetrics-net) |
 | [![codecov](https://codecov.io/gh/StefH/SimMetrics.Net/branch/master/graph/badge.svg)](https://codecov.io/gh/StefH/SimMetrics.Net) |
+| [![Coverage Status](https://coveralls.io/repos/github/StefH/SimMetrics.Net/badge.svg?branch=master)](https://coveralls.io/github/StefH/SimMetrics.Net?branch=master) |
 | [![NuGet Badge](https://buildstats.info/nuget/SimMetrics.Net)](https://www.nuget.org/packages/SimMetrics.Net) |
 
 Supported frameworks are:
