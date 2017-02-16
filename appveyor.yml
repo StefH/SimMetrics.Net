@@ -17,7 +17,7 @@ install:
 environment:
   PATH: $(PATH);$(PROGRAMFILES)\dotnet\
   COVERALLS_REPO_TOKEN:
-    secure: OnGre4D7L1RUh2CghTv8SsxdCJNfhDHKI
+    secure: GhxjOYPfvNvUp7RhT6bud8pA9GWYrGd3KV+G/JFlxRtg2t2F3fCY3tgsq2jwDubE
 
 build_script:
 - appveyor-retry dotnet restore .\src\SimMetrics.Net
