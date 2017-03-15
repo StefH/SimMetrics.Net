@@ -2,20 +2,12 @@
   "version": "1.0.0-*",
   "authors": [ "Stef Heyenrath" ],
 
-  "dependencies": {
-    "NUnit": "3.6.0",
-    "dotnet-test-nunit": "3.4.0-beta-3",
-    "SimMetrics.Net": { "target": "project" }
-  },
-
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": "dnxcore50",
+    "net452": {
       "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.1.0"
-        }
+        "NUnit": "3.6.0",
+        "dotnet-test-nunit": "3.4.0-beta-3",
+        "SimMetrics.Net": { "target": "project" }
       }
     }
   },
