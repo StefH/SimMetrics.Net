@@ -23,12 +23,12 @@ build_script:
   - cmd: dotnet --info
 
   # Restore and build 'src'
-  - cmd: dotnet restore src
-  - cmd: dotnet build src --configuration %CONFIGURATION%
+  - cmd: dotnet restore src\SimMetrics.Net\SimMetrics.Net.csproj
+  - cmd: dotnet build src\SimMetrics.Net\SimMetrics.Net.csproj --configuration %CONFIGURATION%
 
   # Restore and build 'tests'
-  - cmd: dotnet restore tests
-  - cmd: dotnet build tests --configuration %CONFIGURATION%
+  - cmd: dotnet restore tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj
+  - cmd: dotnet build tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION%
 
 test_script:
   - cmd: dotnet test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION%
