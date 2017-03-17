@@ -18,5 +18,5 @@ script:
   - dotnet restore src/SimMetrics.Net/SimMetrics.Net.csproj
   - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework netstandard1.0
 
-  - dotnet restore tests/SimMetrics.Net/SimMetrics.Net.Tests.csproj
+  - dotnet restore tests/SimMetrics.Net.Tests/SimMetrics.Net.Tests.csproj
   - dotnet test tests/SimMetrics.Net.Test/SimMetrics.Net.Test.csproj --configuration Release --framework net452
