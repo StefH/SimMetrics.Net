@@ -20,5 +20,3 @@ script:
 
   - dotnet restore tests
   - dotnet test tests/SimMetrics.Net.Test/SimMetrics.Net.Test.csproj --configuration Release --framework net452
-
-0
