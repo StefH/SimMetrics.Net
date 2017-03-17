@@ -15,11 +15,10 @@ env:
 
 script:
   - dotnet --info
-  - dotnet restore src/SimMetrics.Net/SimMetrics.Net.csproj
-  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework net20
-  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework net35
-  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework net45
-  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework netstandard1.0
+  - dotnet restore src/SimMetrics.Net
+  - msbuild src/SimMetrics.Net
 
-  - dotnet restore tests/SimMetrics.Net.Tests/SimMetrics.Net.Tests.csproj
-  - dotnet test tests/SimMetrics.Net.Test/SimMetrics.Net.Test.csproj --configuration Release --framework net452
+  - dotnet restore tests/SimMetrics.Net.Tests
+  - msbuild src/SimMetrics.Net
+
+  - dotnet test tests/SimMetrics.Net.Test --configuration Release --framework net452
