@@ -16,9 +16,9 @@ env:
 script:
   - dotnet --info
   - dotnet restore src/SimMetrics.Net
-  - msbuild src/SimMetrics.Net
+  - xbuild /p:Configuration=Release src/SimMetrics.Net
 
   - dotnet restore tests/SimMetrics.Net.Tests
-  - msbuild src/SimMetrics.Net
+  - xbuild /p:Configuration=Release src/SimMetrics.Net
 
   - dotnet test tests/SimMetrics.Net.Test --configuration Release --framework net452
