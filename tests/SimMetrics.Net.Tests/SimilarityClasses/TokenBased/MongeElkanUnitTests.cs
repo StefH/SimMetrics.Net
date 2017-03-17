@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using NUnit.Framework;
 using SimMetrics.Net.Metric;
 
@@ -11,13 +12,13 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #region Test Data Setup
         struct TestRecord
         {
-            public string nameOne;
-            public string nameTwo;
-            public double mongeElkanMatchLevel;
+            public string NameOne;
+            public string NameTwo;
+            public double MongeElkanMatchLevel;
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
@@ -25,18 +26,18 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
             {
                 string[] letters = addChars.Split(',');
                 TestRecord testName;
-                testName.nameOne = letters[0];
-                testName.nameTwo = letters[1];
-                testName.mongeElkanMatchLevel = Convert.ToDouble(letters[17]);
-                testNames.Add(testName);
+                testName.NameOne = letters[0];
+                testName.NameTwo = letters[1];
+                testName.MongeElkanMatchLevel = Convert.ToDouble(letters[17], CultureInfo.InvariantCulture);
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
@@ -45,29 +46,29 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         [Category("MongeElkan Test")]
         public void MongeElkan_ShortDescription()
         {
-            Assert.AreEqual("MongeElkan", myMongeElkan.ShortDescriptionString, "Problem with MongeElkan test short description.");
+            Assert.AreEqual("MongeElkan", _myMongeElkan.ShortDescriptionString, "Problem with MongeElkan test short description.");
         }
 
         [Test]
         [Category("MongeElkan Test")]
         public void MongeElkan_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.mongeElkanMatchLevel.ToString("F3"),
-                                myMongeElkan.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
-                                "Problem with MongeElkan test - " + testRecord.nameOne + ' ' + testRecord.nameTwo);
+                Assert.AreEqual(testRecord.MongeElkanMatchLevel.ToString("F3"),
+                                _myMongeElkan.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
+                                "Problem with MongeElkan test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
         #endregion
 
-        MongeElkan myMongeElkan;
+        MongeElkan _myMongeElkan;
 
         [SetUp]
         public void SetUp()
         {
             LoadData();
-            myMongeElkan = new MongeElkan();
+            _myMongeElkan = new MongeElkan();
         }
     }
 }

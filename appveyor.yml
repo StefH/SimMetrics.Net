@@ -1,34 +1,37 @@
-os: Visual Studio 2015
-
-version: 1.0.0.{build}
+version: 1.0.2.{build}
 
 configuration:
-- Debug
+- Release
 
 platform: Any CPU
 
 init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 
-install:
-- ps: Start-FileDownload 'https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/Latest/dotnet-dev-win-x64.latest.exe'
-- cmd: dotnet-dev-win-x64.latest.exe /quiet
-
 environment:
-  PATH: $(PATH);$(PROGRAMFILES)\dotnet\
   COVERALLS_REPO_TOKEN:
     secure: GhxjOYPfvNvUp7RhT6bud8pA9GWYrGd3KV+G/JFlxRtg2t2F3fCY3tgsq2jwDubE
 
-build_script:
-- appveyor-retry dotnet restore .\src\SimMetrics.Net
-- dotnet build .\src\SimMetrics.Net\project.json -c %CONFIGURATION%
-- dotnet pack -c Release --no-build --version-suffix %LABEL% -o .\artifacts .\src\SimMetrics.Net\project.json
+install:
+  - ps: Invoke-WebRequest "https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1" -OutFile ".\dotnet-install.ps1"
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetcli"
+  - ps: '& .\dotnet-install.ps1 -InstallDir "$env:DOTNET_INSTALL_DIR" -Version 1.0.1 -NoPath'
+  - ps: $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
+  - ps: $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = "true"
 
-- appveyor-retry dotnet restore .\tests\SimMetrics.Net.Tests
-- dotnet build .\tests\SimMetrics.Net.Tests\project.json -c %CONFIGURATION%
+build_script:
+  - cmd: dotnet --info
+
+  # Restore and build 'src'
+  - cmd: dotnet restore src
+  - cmd: dotnet build src --configuration %CONFIGURATION%
+
+  # Restore and build 'tests'
+  - cmd: dotnet restore tests
+  - cmd: dotnet build tests --configuration %CONFIGURATION%
 
 test_script:
-- dotnet test -c %CONFIGURATION% --no-build .\tests\SimMetrics.Net.Tests
+  - cmd: dotnet test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION%
 
 after_test:
   - nuget.exe install OpenCover -ExcludeVersion
@@ -40,7 +43,7 @@ after_test:
   - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\coverage.xml
 
 artifacts:
-- path: artifacts\**\*.*
+- path: 'source\**\*.nupkg'
 
 cache:
 - packages

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using NUnit.Framework;
 using SimMetrics.Net.Metric;
 
@@ -12,13 +13,13 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #region Test Data Setup
         struct TestRecord
         {
-            public string nameOne;
-            public string nameTwo;
-            public double jaccardSimilarityMatchLevel;
+            public string NameOne;
+            public string NameTwo;
+            public double JaccardSimilarityMatchLevel;
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
@@ -26,18 +27,18 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
             {
                 string[] letters = addChars.Split(',');
                 TestRecord testName;
-                testName.nameOne = letters[0];
-                testName.nameTwo = letters[1];
-                testName.jaccardSimilarityMatchLevel = Convert.ToDouble(letters[15]);
-                testNames.Add(testName);
+                testName.NameOne = letters[0];
+                testName.NameTwo = letters[1];
+                testName.JaccardSimilarityMatchLevel = Convert.ToDouble(letters[15], CultureInfo.InvariantCulture);
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
@@ -46,7 +47,7 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         [Category("JaccardSimilarity Test")]
         public void JaccardSimilarity_ShortDescription()
         {
-            Assert.AreEqual("JaccardSimilarity", myJaccardSimilarity.ShortDescriptionString,
+            Assert.AreEqual("JaccardSimilarity", _myJaccardSimilarity.ShortDescriptionString,
                             "Problem with JaccardSimilarity test short description.");
         }
 
@@ -54,22 +55,22 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         [Category("JaccardSimilarity Test")]
         public void JaccardSimilarity_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.jaccardSimilarityMatchLevel.ToString("F3"),
-                                myJaccardSimilarity.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
-                                "Problem with JaccardSimilarity test - " + testRecord.nameOne + ' ' + testRecord.nameTwo);
+                Assert.AreEqual(testRecord.JaccardSimilarityMatchLevel.ToString("F3"),
+                                _myJaccardSimilarity.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
+                                "Problem with JaccardSimilarity test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
         #endregion
 
-        JaccardSimilarity myJaccardSimilarity;
+        JaccardSimilarity _myJaccardSimilarity;
 
         [SetUp]
         public void SetUp()
         {
             LoadData();
-            myJaccardSimilarity = new JaccardSimilarity();
+            _myJaccardSimilarity = new JaccardSimilarity();
         }
     }
 }

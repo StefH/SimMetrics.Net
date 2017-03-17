@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using NUnit.Framework;
 using SimMetrics.Net.Metric;
 
@@ -27,7 +28,7 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
                 TestRecord testName;
                 testName.nameOne = letters[0];
                 testName.nameTwo = letters[1];
-                testName.levensteinMatchLevel = Convert.ToDouble(letters[10]);
+                testName.levensteinMatchLevel = Convert.ToDouble(letters[10], CultureInfo.InvariantCulture);
                 testNames.Add(testName);
             }
         }

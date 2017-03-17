@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using NUnit.Framework;
 using SimMetrics.Net.Metric;
 using SimMetrics.Net.Utilities;
@@ -43,26 +44,24 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.QGram
             public double BigramDistanceMatchLevel { get; set; }
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
             if (addChars != null)
             {
                 string[] letters = addChars.Split(',');
-                TestRecord testName =
-                    new TestRecord(letters[0], letters[1], Convert.ToDouble(letters[12]), Convert.ToDouble(letters[7]),
-                                   Convert.ToDouble(letters[8]), Convert.ToDouble(letters[9]));
-                testNames.Add(testName);
+                var testName = new TestRecord(letters[0], letters[1], Convert.ToDouble(letters[12], CultureInfo.InvariantCulture), Convert.ToDouble(letters[7], CultureInfo.InvariantCulture), Convert.ToDouble(letters[8], CultureInfo.InvariantCulture), Convert.ToDouble(letters[9], CultureInfo.InvariantCulture));
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
@@ -81,7 +80,7 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.QGram
         [Category("TrigramExtendedDistance Test")]
         public void TrigramExtendedDistance_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
                 Assert.AreEqual(testRecord.TrigramExtendedDistanceMatchLevel.ToString("F3"),
                                 myTrigramExtendedDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
@@ -96,7 +95,7 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.QGram
         [Category("TrigramDistance Test")]
         public void TrigramDistance_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
                 Assert.AreEqual(testRecord.TrigramDistanceMatchLevel.ToString("F3"),
                                 myTrigramDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
@@ -111,7 +110,7 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.QGram
         [Category("BigramExtendedDistance Test")]
         public void BigramExtendedDistance_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
                 Assert.AreEqual(testRecord.BigramExtendedDistanceMatchLevel.ToString("F3"),
                                 myBigramExtendedDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
@@ -126,7 +125,7 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.QGram
         [Category("BigramDistance Test")]
         public void BigramDistance_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
                 Assert.AreEqual(testRecord.BigramDistanceMatchLevel.ToString("F3"),
                                 myBigramDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
