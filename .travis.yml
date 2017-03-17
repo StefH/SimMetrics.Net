@@ -16,6 +16,9 @@ env:
 script:
   - dotnet --info
   - dotnet restore src/SimMetrics.Net/SimMetrics.Net.csproj
+  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework net20
+  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework net35
+  - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework net45
   - dotnet build src/SimMetrics.Net/SimMetrics.Net.csproj --configuration Release --framework netstandard1.0
 
   - dotnet restore tests/SimMetrics.Net.Tests/SimMetrics.Net.Tests.csproj
