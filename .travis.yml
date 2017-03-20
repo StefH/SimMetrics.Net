@@ -26,5 +26,7 @@ script:
 # TEST : Restore and Build
 - dotnet restore tests/SimMetrics.Net.Tests
 
-- export FrameworkPathOverride=/usr/lib/mono/4.5
-- dotnet build tests/SimMetrics.Net.Tests --configuration Release --framework net45
+- dotnet build tests/SimMetrics.Net.Tests --configuration Release --framework netcoreapp1.1
+
+# TEST : Execute
+- dotnet test tests/SimMetrics.Net.Tests --configuration Release --framework netcoreapp1.1
