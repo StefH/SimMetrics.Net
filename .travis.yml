@@ -7,12 +7,17 @@ language: csharp
 mono: latest
 dotnet: 1.0.1
 
-env:  
-- DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-- DOTNET_CLI_TELEMETRY_OPTOUT: 1
-- FrameworkPathOverride: /usr/lib/mono/4.5/
+#
+#env:
+#- DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+#- DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 script:
 - dotnet restore src/SimMetrics.Net
 - dotnet build src/SimMetrics.Net --configuration Release --framework netstandard1.0
+
+- export FrameworkPathOverride=/usr/lib/mono/2.0-api
+- dotnet build src/SimMetrics.Net --configuration Release --framework net20
+
+- export FrameworkPathOverride=/usr/lib/mono/4.5/
 - dotnet build src/SimMetrics.Net --configuration Release --framework net45
