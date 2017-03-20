@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <Authors>Stef Heyenrath</Authors>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net45</TargetFramework>
     <AssemblyName>SimMetrics.Net.Tests</AssemblyName>
     <PackageId>SimMetrics.Net.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <ProjectReference Include="..\..\src\SimMetrics.Net\SimMetrics.Net.csproj" />
     <PackageReference Include="NUnit" Version="3.6.1" />
     <Reference Include="System" />
