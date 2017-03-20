@@ -13,5 +13,5 @@ env:
 script:
   - dotnet --info
   - dotnet restore src/SimMetrics.Net
-  - dotnet build src/SimMetrics.Net --framework netstandard1.0
-  - xbuild /p:Configuration=Release build src/SimMetrics.Net
+  - dotnet build src/SimMetrics.Net --configuration Release --framework netstandard1.0
+  - dotnet build src/SimMetrics.Net --configuration Release --framework net40
