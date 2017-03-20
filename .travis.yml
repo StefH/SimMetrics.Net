@@ -2,6 +2,8 @@ dist: trusty
 
 sudo: required
 
+language: csharp
+
 mono: latest
 dotnet: 1.0.1
 
