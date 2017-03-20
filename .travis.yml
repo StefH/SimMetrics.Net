@@ -15,11 +15,9 @@ script:
 
 - export FrameworkPathOverride=/usr/lib/mono/2.0-api
 - dotnet build src/SimMetrics.Net --configuration Release --framework net20
-
-- export FrameworkPathOverride=/usr/lib/mono/3.5-api
 - dotnet build src/SimMetrics.Net --configuration Release --framework net35
 
-- export FrameworkPathOverride=/usr/lib/mono/4.0
+- export FrameworkPathOverride=/usr/lib/mono/4.0-api
 - dotnet build src/SimMetrics.Net --configuration Release --framework net40
 
 - export FrameworkPathOverride=/usr/lib/mono/4.5
