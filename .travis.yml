@@ -30,3 +30,13 @@ script:
 
 # TEST : Execute
 - dotnet test tests/SimMetrics.Net.Tests/SimMetrics.Net.Tests.csproj --configuration Release --framework netcoreapp1.1
+
+# OpenCover and coveralls
+- nuget.exe install OpenCover -ExcludeVersion
+- nuget.exe install coveralls.net -ExcludeVersion
+
+- OpenCover\tools\OpenCover.Console.exe -register:user -target:"dotnet.exe" -searchdirs:".\tests\SimMetrics.Net.Tests\bin\%CONFIGURATION%\netcoreapp1.1" -oldstyle -targetargs:"test .\tests\SimMetrics.Net.Tests" -returntargetcode -filter:"+[SimMetrics.Net]*" -output:coverage.xml
+- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+- pip install codecov
+- codecov -f "coverage.xml"
+- coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\coverage.xml
