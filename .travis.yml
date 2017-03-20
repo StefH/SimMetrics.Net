@@ -29,4 +29,4 @@ script:
 - dotnet build tests/SimMetrics.Net.Tests --configuration Release --framework netcoreapp1.1
 
 # TEST : Execute
-- dotnet test tests/SimMetrics.Net.Tests --configuration Release --framework netcoreapp1.1
+- dotnet test tests/SimMetrics.Net.Tests/SimMetrics.Net.Tests.csproj --configuration Release --framework netcoreapp1.1
