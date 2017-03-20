@@ -8,10 +8,11 @@ mono: latest
 dotnet: 1.0.1
 
 env:  
-  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  - FrameworkPathOverride: /usr/lib/mono/4.8/
 
 script:
-  - dotnet --info
   - dotnet restore src/SimMetrics.Net
   - dotnet build src/SimMetrics.Net --configuration Release --framework netstandard1.0
-  - dotnet build src/SimMetrics.Net --configuration Release --framework net40
+  - dotnet build src/SimMetrics.Net --configuration Release --framework net20
