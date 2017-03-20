@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class MongeElkanUnitTests
     {
         #region Test Data Setup
@@ -42,20 +42,20 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region MongeElkan Tests
-        [Test]
-        [Category("MongeElkan Test")]
+        [Fact]
+        // [Category("MongeElkan Test")]
         public void MongeElkan_ShortDescription()
         {
-            Assert.AreEqual("MongeElkan", _myMongeElkan.ShortDescriptionString, "Problem with MongeElkan test short description.");
+            AssertUtil.Equal("MongeElkan", _myMongeElkan.ShortDescriptionString, "Problem with MongeElkan test short description.");
         }
 
-        [Test]
-        [Category("MongeElkan Test")]
+        [Fact]
+        // [Category("MongeElkan Test")]
         public void MongeElkan_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.MongeElkanMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.MongeElkanMatchLevel.ToString("F3"),
                                 _myMongeElkan.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with MongeElkan test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -64,8 +64,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         MongeElkan _myMongeElkan;
 
-        [SetUp]
-        public void SetUp()
+        //[SetUp]
+        public MongeElkanUnitTests()
         {
             LoadData();
             _myMongeElkan = new MongeElkan();

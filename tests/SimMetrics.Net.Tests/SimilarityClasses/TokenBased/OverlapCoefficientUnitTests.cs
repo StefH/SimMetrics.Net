@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class OverlapCoefficientUnitTests
     {
         #region Test Data Setup
@@ -42,21 +42,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region OverlapCoefficient Tests
-        [Test]
-        [Category("OverlapCoefficient Test")]
+        [Fact]
+        // [Category("OverlapCoefficient Test")]
         public void OverlapCoefficient_ShortDescription()
         {
-            Assert.AreEqual("OverlapCoefficient", _myOverlapCoefficient.ShortDescriptionString,
+            AssertUtil.Equal("OverlapCoefficient", _myOverlapCoefficient.ShortDescriptionString,
                             "Problem with OverlapCoefficient test short description.");
         }
 
-        [Test]
-        [Category("OverlapCoefficient Test")]
+        [Fact]
+        // [Category("OverlapCoefficient Test")]
         public void OverlapCoefficient_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.OverlapCoefficientMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.OverlapCoefficientMatchLevel.ToString("F3"),
                                 _myOverlapCoefficient.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with OverlapCoefficient test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -65,8 +65,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         OverlapCoefficient _myOverlapCoefficient;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public OverlapCoefficientUnitTests()
         {
             LoadData();
             _myOverlapCoefficient = new OverlapCoefficient();

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class NeedlemanWunchUnitTests
     {
         #region Test Data Setup
@@ -50,21 +50,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
         #endregion
 
         #region NeedlemanWunch Tests
-        [Test]
-        [Category("NeedlemanWunch Test")]
+        [Fact]
+        // [Category("NeedlemanWunch Test")]
         public void NeedlemanWunch_ShortDescription()
         {
-            Assert.AreEqual("NeedlemanWunch", _myNeedlemanWunch.ShortDescriptionString,
+            AssertUtil.Equal("NeedlemanWunch", _myNeedlemanWunch.ShortDescriptionString,
                             "Problem with NeedlemanWunch test short description.");
         }
 
-        [Test]
-        [Category("NeedlemanWunch Test")]
+        [Fact]
+        // [Category("NeedlemanWunch Test")]
         public void NeedlemanWunch_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.NeedlemanWunchMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.NeedlemanWunchMatchLevel.ToString("F3"),
                                 _myNeedlemanWunch.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with NeedlemanWunch test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -73,8 +73,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
 
         NeedlemanWunch _myNeedlemanWunch;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public NeedlemanWunchUnitTests()
         {
             LoadData();
             _myNeedlemanWunch = new NeedlemanWunch();

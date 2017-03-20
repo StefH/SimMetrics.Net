@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class LevensteinUnitTests
     {
         #region Test Data Setup
@@ -49,20 +49,20 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
         #endregion
 
         #region Levenstein Tests
-        [Test]
-        [Category("Levenstein Test")]
+        [Fact]
+        // [Category("Levenstein Test")]
         public void Levenstein_ShortDescription()
         {
-            Assert.AreEqual("Levenstein", myLevenstein.ShortDescriptionString, "Problem with Levenstein test short description.");
+            AssertUtil.Equal("Levenstein", myLevenstein.ShortDescriptionString, "Problem with Levenstein test short description.");
         }
 
-        [Test]
-        [Category("Levenstein Test")]
+        [Fact]
+        // [Category("Levenstein Test")]
         public void Levenstein_TestData()
         {
             foreach (TestRecord testRecord in testNames)
             {
-                Assert.AreEqual(testRecord.levensteinMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.levensteinMatchLevel.ToString("F3"),
                                 myLevenstein.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
                                 "Problem with Levenstein test - " + testRecord.nameOne + ' ' + testRecord.nameTwo);
             }
@@ -71,8 +71,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
 
         Levenstein myLevenstein;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public LevensteinUnitTests()
         {
             LoadData();
             myLevenstein = new Levenstein();

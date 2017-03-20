@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.LengthBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class ChapmanMeanLengthUnitTests
     {
         #region Test Data Setup
@@ -49,21 +49,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.LengthBased
         #endregion
 
         #region Chapman Deviation Tests
-        [Test]
-        [Category("Chapman Mean Length Test")]
+        [Fact]
+        // [Category("Chapman Mean Length Test")]
         public void ChapmanMeanLength_ShortDescription()
         {
-            Assert.AreEqual("ChapmanMeanLength", myChapmanMeanLength.ShortDescriptionString,
+            AssertUtil.Equal("ChapmanMeanLength", myChapmanMeanLength.ShortDescriptionString,
                             "Problem with Chapman Mean Length test short description.");
         }
 
-        [Test]
-        [Category("Chapman Mean Length Test")]
+        [Fact]
+        // [Category("Chapman Mean Length Test")]
         public void ChapmanMeanLength_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.ChapmanLengthMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.ChapmanLengthMatchLevel.ToString("F3"),
                                 myChapmanMeanLength.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with Chapman Mean Length test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -72,8 +72,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.LengthBased
 
         ChapmanMeanLength myChapmanMeanLength;
 
-        [SetUp]
-        public void SetUp()
+        //[SetUp]
+        public ChapmanMeanLengthUnitTests()
         {
             LoadData();
             myChapmanMeanLength = new ChapmanMeanLength();

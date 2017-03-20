@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class EuclideanDistanceUnitTests
     {
         #region Test Data Setup
@@ -42,21 +42,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region EuclideanDistance Tests
-        [Test]
-        [Category("EuclideanDistance Test")]
+        [Fact]
+        // [Category("EuclideanDistance Test")]
         public void EuclideanDistance_ShortDescription()
         {
-            Assert.AreEqual("EuclideanDistance", _myEuclideanDistance.ShortDescriptionString,
+            AssertUtil.Equal("EuclideanDistance", _myEuclideanDistance.ShortDescriptionString,
                             "Problem with EuclideanDistance test short description.");
         }
 
-        [Test]
-        [Category("EuclideanDistance Test")]
+        [Fact]
+        // [Category("EuclideanDistance Test")]
         public void EuclideanDistance_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.EuclideanDistanceMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.EuclideanDistanceMatchLevel.ToString("F3"),
                                 _myEuclideanDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with EuclideanDistance test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -65,8 +65,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         EuclideanDistance _myEuclideanDistance;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public EuclideanDistanceUnitTests()
         {
             LoadData();
             _myEuclideanDistance = new EuclideanDistance();

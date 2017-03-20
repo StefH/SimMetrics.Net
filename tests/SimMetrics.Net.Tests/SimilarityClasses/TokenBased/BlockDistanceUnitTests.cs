@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class BlockDistanceUnitTests
     {
         #region Test Data Setup
@@ -43,21 +43,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region Block Distance Tests
-        [Test]
-        [Category("BlockDistance Test")]
+        [Fact]
+        // [Category("BlockDistance Test")]
         public void BlockDistanceShortDescription()
         {
-            Assert.AreEqual("BlockDistance", myBlockDistance.ShortDescriptionString,
+            AssertUtil.Equal("BlockDistance", myBlockDistance.ShortDescriptionString,
                             "Problem with BlockDistance test short description.");
         }
 
-        [Test]
-        [Category("BlockDistance Test")]
+        [Fact]
+        // [Category("BlockDistance Test")]
         public void BlockDistanceTestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.BlockDistanceMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.BlockDistanceMatchLevel.ToString("F3"),
                                 myBlockDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with BlockDistance test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -66,8 +66,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         BlockDistance myBlockDistance;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public BlockDistanceUnitTests()
         {
             LoadData();
             myBlockDistance = new BlockDistance();

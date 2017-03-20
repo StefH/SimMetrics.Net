@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class DiceSimilarityUnitTests
     {
         #region Test Data Setup
@@ -43,21 +43,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region DiceSimilarity Tests
-        [Test]
-        [Category("DiceSimilarity Test")]
+        [Fact]
+        // [Category("DiceSimilarity Test")]
         public void DiceSimilarity_ShortDescription()
         {
-            Assert.AreEqual("DiceSimilarity", _myDiceSimilarity.ShortDescriptionString,
+            AssertUtil.Equal("DiceSimilarity", _myDiceSimilarity.ShortDescriptionString,
                             "Problem with DiceSimilarity test short description.");
         }
 
-        [Test]
-        [Category("DiceSimilarity Test")]
+        [Fact]
+        // [Category("DiceSimilarity Test")]
         public void DiceSimilarity_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.DiceSimilarityMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.DiceSimilarityMatchLevel.ToString("F3"),
                                 _myDiceSimilarity.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with DiceSimilarity test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -66,8 +66,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         DiceSimilarity _myDiceSimilarity;
 
-        [SetUp]
-        public void SetUp()
+        //[SetUp]
+        public DiceSimilarityUnitTests()
         {
             LoadData();
             _myDiceSimilarity = new DiceSimilarity();

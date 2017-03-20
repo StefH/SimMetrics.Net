@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class CosineSimilarityUnitTests
     {
         #region Test Data Setup
@@ -43,21 +43,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region Block Distance Tests
-        [Test]
-        [Category("CosineSimilarity Test")]
+        [Fact]
+        // [Category("CosineSimilarity Test")]
         public void CosineSimilarityShortDescription()
         {
-            Assert.AreEqual("CosineSimilarity", _myCosineSimilarity.ShortDescriptionString,
+            AssertUtil.Equal("CosineSimilarity", _myCosineSimilarity.ShortDescriptionString,
                             "Problem with CosineSimilarity test short description.");
         }
 
-        [Test]
-        [Category("CosineSimilarity Test")]
+        [Fact]
+        // [Category("CosineSimilarity Test")]
         public void CosineSimilarityTestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.CosineSimilarityMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.CosineSimilarityMatchLevel.ToString("F3"),
                                 _myCosineSimilarity.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 string.Format("{0}CosineSimilarity{1}{2}{3}{4}", Environment.NewLine, Environment.NewLine,
                                               testRecord.NameOne, Environment.NewLine, testRecord.NameTwo));
@@ -67,8 +67,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         CosineSimilarity _myCosineSimilarity;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public CosineSimilarityUnitTests()
         {
             LoadData();
             _myCosineSimilarity = new CosineSimilarity();

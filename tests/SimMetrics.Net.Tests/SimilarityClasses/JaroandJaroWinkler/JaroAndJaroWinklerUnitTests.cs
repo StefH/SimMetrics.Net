@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.JaroandJaroWinkler
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class JaroAndJaroWinklerUnitTests
     {
         #region Test Data Setup
@@ -52,21 +52,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.JaroandJaroWinkler
         #endregion
 
         #region Jaro Tests
-        [Test]
-        [Category("Jaro Test")]
+        [Fact]
+        // [Category("Jaro Test")]
         public void JaroShortDescription()
         {
             //myJaro.
-            Assert.AreEqual(_myJaro.ShortDescriptionString, "Jaro", "Problem with Jaro test ShortDescription");
+            AssertUtil.Equal(_myJaro.ShortDescriptionString, "Jaro", "Problem with Jaro test ShortDescription");
         }
 
-        [Test]
-        [Category("Jaro Test")]
+        [Fact]
+        // [Category("Jaro Test")]
         public void JaroTestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.JaroMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.JaroMatchLevel.ToString("F3"),
                                 _myJaro.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with Jaro test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -74,20 +74,20 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.JaroandJaroWinkler
         #endregion
 
         #region JaroWinkler tests
-        [Test]
-        [Category("JaroWinkler Test")]
+        [Fact]
+        // [Category("JaroWinkler Test")]
         public void JaroWinklerShortDescription()
         {
-            Assert.AreEqual(_myJaroWinkler.ShortDescriptionString, "JaroWinkler", "Problem with Jaro test ShortDescription");
+            AssertUtil.Equal(_myJaroWinkler.ShortDescriptionString, "JaroWinkler", "Problem with Jaro test ShortDescription");
         }
 
-        [Test]
-        [Category("JaroWinkler Test")]
+        [Fact]
+        // [Category("JaroWinkler Test")]
         public void JaroWinklerTestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.JaroWinklerMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.JaroWinklerMatchLevel.ToString("F3"),
                                 _myJaroWinkler.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with JaroWinkler test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -97,8 +97,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.JaroandJaroWinkler
         Jaro _myJaro;
         JaroWinkler _myJaroWinkler;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public JaroAndJaroWinklerUnitTests()
         {
             LoadData();
             _myJaro = new Jaro();

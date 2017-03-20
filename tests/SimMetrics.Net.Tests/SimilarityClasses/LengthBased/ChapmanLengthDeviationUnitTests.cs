@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.LengthBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class ChapmanLengthDeviationUnitTests
     {
         #region Test Data Setup
@@ -49,21 +49,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.LengthBased
         #endregion
 
         #region Chapman Deviation Tests
-        [Test]
-        [Category("Chapman Length Deviation Test")]
+        [Fact]
+        // [Category("Chapman Length Deviation Test")]
         public void ChapmanLengthDeviation_ShortDescription()
         {
-            Assert.AreEqual("ChapmanLengthDeviation", myChapmanLengthDeviation.ShortDescriptionString,
+            AssertUtil.Equal("ChapmanLengthDeviation", myChapmanLengthDeviation.ShortDescriptionString,
                             "Problem with Chapman Length Deviation test short description.");
         }
 
-        [Test]
-        [Category("Chapman Length Deviation Test")]
+        [Fact]
+        // [Category("Chapman Length Deviation Test")]
         public void ChapmanLengthDeviation_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.ChapmanLengthMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.ChapmanLengthMatchLevel.ToString("F3"),
                                 myChapmanLengthDeviation.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with Chapman Length Deviation test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -72,8 +72,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.LengthBased
 
         ChapmanLengthDeviation myChapmanLengthDeviation;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public ChapmanLengthDeviationUnitTests()
         {
             LoadData();
             myChapmanLengthDeviation = new ChapmanLengthDeviation();

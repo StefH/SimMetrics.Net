@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class MatchingCoefficientUnitTests
     {
         #region Test Data Setup
@@ -42,21 +42,21 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
         #endregion
 
         #region MatchingCoefficient Tests
-        [Test]
-        [Category("MatchingCoefficient Test")]
+        [Fact]
+        // [Category("MatchingCoefficient Test")]
         public void MatchingCoefficient_ShortDescription()
         {
-            Assert.AreEqual("MatchingCoefficient", _myMatchingCoefficient.ShortDescriptionString,
+            AssertUtil.Equal("MatchingCoefficient", _myMatchingCoefficient.ShortDescriptionString,
                             "Problem with MatchingCoefficient test short description.");
         }
 
-        [Test]
-        [Category("MatchingCoefficient Test")]
+        [Fact]
+        // [Category("MatchingCoefficient Test")]
         public void MatchingCoefficient_TestData()
         {
             foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.MatchingCoefficientMatchLevel.ToString("F3"),
+                AssertUtil.Equal(testRecord.MatchingCoefficientMatchLevel.ToString("F3"),
                                 _myMatchingCoefficient.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with MatchingCoefficient test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -65,8 +65,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 
         MatchingCoefficient _myMatchingCoefficient;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public MatchingCoefficientUnitTests()
         {
             LoadData();
             _myMatchingCoefficient = new MatchingCoefficient();

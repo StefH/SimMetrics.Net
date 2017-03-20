@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Metric;
 using SimMetrics.Net.Utilities;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class SmithWatermanUnitTests
     {
         #region Test Data Setup
@@ -132,57 +132,57 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
         #endregion
 
         #region SmithWaterman Tests
-        [Test]
-        [Category("SmithWaterman")]
+        [Fact]
+        // [Category("SmithWaterman")]
         public void SmithWatermanShortDescription()
         {
-            Assert.AreEqual(_mySmithWatermanDefault.ShortDescriptionString, "SmithWaterman",
+            AssertUtil.Equal(_mySmithWatermanDefault.ShortDescriptionString, "SmithWaterman",
                             "Problem with SmithWaterman test ShortDescription");
         }
 
-        [Test]
-        [Category("SmithWaterman")]
+        [Fact]
+        // [Category("SmithWaterman")]
         public void SmithWatermanDefaultTestData()
         {
             foreach (SwTestRecord testRecord in _swTestNames)
             {
-                Assert.AreEqual(testRecord.SwDefault.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwDefault.ToString("F3"),
                                 _mySmithWatermanDefault.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SmithWaterman test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SmithWaterman")]
+        [Fact]
+        // [Category("SmithWaterman")]
         public void SmithWatermanCostTestData()
         {
             foreach (SwTestRecord testRecord in _swTestNames)
             {
-                Assert.AreEqual(testRecord.SwDefault.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwDefault.ToString("F3"),
                                 _mySmithWatermanCost.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SmithWaterman test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SmithWaterman")]
+        [Fact]
+        // [Category("SmithWaterman")]
         public void SmithWatermanCostFunctionTestData()
         {
             foreach (SwTestRecord testRecord in _swTestNames)
             {
-                Assert.AreEqual(testRecord.SwDefault.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwDefault.ToString("F3"),
                                 _mySmithWatermanCostFunction.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SmithWaterman test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SmithWaterman")]
+        [Fact]
+        // [Category("SmithWaterman")]
         public void SmithWatermanCostAndCostFunctionTestData()
         {
             foreach (SwTestRecord testRecord in _swTestNames)
             {
-                Assert.AreEqual(testRecord.SwDefault.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwDefault.ToString("F3"),
                                 _mySmithWatermanCostAndCostFunction.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).
                                     ToString("F3"),
                                 "Problem with SmithWaterman test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
@@ -191,59 +191,59 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
         #endregion
 
         #region SmithWatermanGotoh tests
-        [Test]
-        [Category("SmithWatermanGotoh")]
+        [Fact]
+        // [Category("SmithWatermanGotoh")]
         public void SmithWatermanGotohShortDescription()
         {
-            Assert.AreEqual(_mySmithWatermanGotohDefault.ShortDescriptionString, "SmithWatermanGotoh",
+            AssertUtil.Equal(_mySmithWatermanGotohDefault.ShortDescriptionString, "SmithWatermanGotoh",
                             "Problem with SmithWaterman test ShortDescription");
         }
 
-        [Test]
-        [Category("SmithWatermanGotoh")]
+        [Fact]
+        // [Category("SmithWatermanGotoh")]
         public void SmithWatermanGotohDefaultTestData()
         {
             foreach (SwgTestRecord testRecord in _swgTestNames)
             {
-                Assert.AreEqual(testRecord.SwgDefault.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgDefault.ToString("F3"),
                                 _mySmithWatermanGotohDefault.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SmithWatermanGotoh test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SmithWatermanGotoh")]
+        [Fact]
+        // [Category("SmithWatermanGotoh")]
         public void SmithWatermanGotoGapCostFunctionTestData()
         {
             foreach (SwgTestRecord testRecord in _swgTestNames)
             {
-                Assert.AreEqual(testRecord.SwgGapCostFunction.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgGapCostFunction.ToString("F3"),
                                 _mySmithWatermanGotohGapCostFunction.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).
                                     ToString("F3"),
                                 "Problem with SmithWatermanGotoh test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SmithWatermanGotoh")]
+        [Fact]
+        // [Category("SmithWatermanGotoh")]
         public void SmithWatermanGotoCostFunctionTestData()
         {
             foreach (SwgTestRecord testRecord in _swgTestNames)
             {
-                Assert.AreEqual(testRecord.SwgCostFunction.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgCostFunction.ToString("F3"),
                                 _mySmithWatermanGotohCostFunction.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString(
                                     "F3"),
                                 "Problem with SmithWatermanGotoh test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SmithWatermanGotoh")]
+        [Fact]
+        // [Category("SmithWatermanGotoh")]
         public void SmithWatermanGotoGapCostAndCostFunctionsTestData()
         {
             foreach (SwgTestRecord testRecord in _swgTestNames)
             {
-                Assert.AreEqual(testRecord.SwgGapCostAndCostFunctions.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgGapCostAndCostFunctions.ToString("F3"),
                                 _mySmithWatermanGotohGapCostAndCostFunctions.GetSimilarity(testRecord.NameOne, testRecord.NameTwo)
                                     .ToString("F3"),
                                 "Problem with SmithWatermanGotoh test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
@@ -252,106 +252,106 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
         #endregion
 
         #region SmithWatermanGotohWindowedAffine tests
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaShortDescription()
         {
-            Assert.AreEqual(_mySwgwaDefault.ShortDescriptionString, "SmithWatermanGotohWindowedAffine",
+            AssertUtil.Equal(_mySwgwaDefault.ShortDescriptionString, "SmithWatermanGotohWindowedAffine",
                             "Problem with SmithWaterman test ShortDescription");
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaDefaultTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaDefault.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaDefault.ToString("F3"),
                                 _mySwgwaDefault.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaWindowSizeTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaWindowSize.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaWindowSize.ToString("F3"),
                                 _mySwgwaWindowSize.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaGapCostFunctionTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaGapCostFunction.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaGapCostFunction.ToString("F3"),
                                 _mySwgwaGapCostFunction.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaGapCostFunctionAndWindowSizeTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaGapCostFunctionAndWindowSize.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaGapCostFunctionAndWindowSize.ToString("F3"),
                                 _mySwgwaGapCostFunctionAndWindowSize.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).
                                     ToString("F3"), "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaGapCostAndCostFunctionsTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaGapCostAndCostFunctions.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaGapCostAndCostFunctions.ToString("F3"),
                                 _mySwgwaGapCostAndCostFunctions.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString(
                                     "F3"), "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaGapCostAndCostFunctionsAndWindowSizeTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaGapCostAndCostFunctionsAndWindowSize.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaGapCostAndCostFunctionsAndWindowSize.ToString("F3"),
                                 _mySwgwaGapCostAndCostFunctionsAndWindowSize.GetSimilarity(testRecord.NameOne, testRecord.NameTwo)
                                     .ToString("F3"),
                                 "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaCostFunctionTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaCostFunction.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaCostFunction.ToString("F3"),
                                 _mySwgwaCostFunction.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
 
-        [Test]
-        [Category("SWGWA")]
+        [Fact]
+        // [Category("SWGWA")]
         public void SwgwaCostFunctionAndWindowSizeTestData()
         {
             foreach (SwgaTestRecord testRecord in _swgaTestNames)
             {
-                Assert.AreEqual(testRecord.SwgaCostFunctionAndWindowSize.ToString("F3"),
+                AssertUtil.Equal(testRecord.SwgaCostFunctionAndWindowSize.ToString("F3"),
                                 _mySwgwaCostFunctionAndWindowSize.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString(
                                     "F3"), "Problem with SWGWA test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
@@ -379,8 +379,8 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.EditDistance
         SmithWatermanGotohWindowedAffine _mySwgwaCostFunctionAndWindowSize;
         #endregion
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public SmithWatermanUnitTests()
         {
             LoadData();
 
