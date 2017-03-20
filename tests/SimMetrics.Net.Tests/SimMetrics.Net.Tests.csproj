@@ -10,14 +10,15 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <ProjectReference Include="..\..\src\SimMetrics.Net\SimMetrics.Net.csproj" />
-    <PackageReference Include="NUnit" Version="3.6.1" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="NFluent" Version="2.0.0-alpha" />
+    <PackageReference Include="NUnit" Version="3.6.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.7.0" />
   </ItemGroup>
 
   <ItemGroup>
