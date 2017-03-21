@@ -1,7 +1,7 @@
 version: 1.0.2.{build}
 
 configuration:
-- Release
+- Debug
 
 platform: Any CPU
 
