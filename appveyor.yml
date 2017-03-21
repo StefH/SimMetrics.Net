@@ -25,8 +25,8 @@ build_script:
   - cmd: dotnet build src\SimMetrics.Net\SimMetrics.Net.csproj --configuration %CONFIGURATION% --framework netstandard1.0
 
   # Restore and build 'tests'
-  - cmd: dotnet restore tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj
-  - cmd: dotnet build tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION% --framework netcoreapp1.1
+  - cmd: dotnet restore tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj
+  - cmd: dotnet build tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION% --framework netcoreapp1.1
 
 test_script:
   - cmd: dotnet test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION% --framework netcoreapp1.1
