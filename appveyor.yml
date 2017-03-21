@@ -36,7 +36,7 @@ after_test:
   - nuget.exe install coveralls.net -ExcludeVersion
   - pip install codecov
 
-  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"dotnet.exe" -targetargs:"\" test .\tests\SimMetrics.Net.Tests\" --result=myresults.xml;format=AppVeyor" -returntargetcode -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
+  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"dotnet.exe" -targetargs:"\"test tests\SimMetrics.Net.Tests\" --result=myresults.xml;format=AppVeyor" -returntargetcode -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
 
   - codecov -f "coverage.xml"
   - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\coverage.xml
