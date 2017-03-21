@@ -15,7 +15,7 @@ environment:
 install:
   - ps: Invoke-WebRequest "https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1" -OutFile ".\dotnet-install.ps1"
   - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetcli"
-  - ps: '& .\dotnet-install.ps1 -InstallDir "$env:DOTNET_INSTALL_DIR" -Version 1.0.1 -NoPath'
+  - ps: '& .\dotnet-install.ps1 -InstallDir "$env:DOTNET_INSTALL_DIR" -Version 1.1.0 -NoPath'
   - ps: $env:PATH = "$env:DOTNET_INSTALL_DIR;$env:PATH"
   - ps: $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = "true"
 
@@ -24,21 +24,22 @@ build_script:
 
   # Restore and build 'src'
   - cmd: dotnet restore src\SimMetrics.Net\SimMetrics.Net.csproj
-  - cmd: dotnet run --project src\SimMetrics.Net\SimMetrics.Net.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet build src\SimMetrics.Net\SimMetrics.Net.csproj --configuration %CONFIGURATION% --framework netstandard1.0
 
   # Restore and build 'tests'
   - cmd: dotnet restore tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj
-  - cmd: dotnet build tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet build tests\SimMetrics.Net\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION% --framework netcoreapp1.1
 
 test_script:
-  - cmd: dotnet test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION%
+  - cmd: dotnet test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION% --framework netcoreapp1.1
 
 after_test:
   - nuget.exe install OpenCover -ExcludeVersion
   - nuget.exe install coveralls.net -ExcludeVersion
-  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"nunit3-console.exe" -targetargs:"\".\tests\SimMetrics.Net.Tests\bin\%CONFIGURATION%\net452\win7-x64\SimMetrics.Net.Tests.dll\" --result=myresults.xml;format=AppVeyor" -returntargetcode -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
-  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
+
+  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"dotnet.exe" -targetargs:"\" test .\tests\SimMetrics.Net.Tests\" --result=myresults.xml;format=AppVeyor" -returntargetcode -filter:"+[SimMetrics.Net]*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
+
   - codecov -f "coverage.xml"
   - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\coverage.xml
 
