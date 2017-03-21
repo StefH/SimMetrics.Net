@@ -1,24 +1,25 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Globalization;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class CosineSimilarityUnitTests
     {
         #region Test Data Setup
         struct TestRecord
         {
-            public string nameOne;
-            public string nameTwo;
+            public string NameOne;
+            public string NameTwo;
             public double CosineSimilarityMatchLevel;
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
@@ -26,51 +27,51 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
             {
                 string[] letters = addChars.Split(',');
                 TestRecord testName;
-                testName.nameOne = letters[0];
-                testName.nameTwo = letters[1];
-                testName.CosineSimilarityMatchLevel = Convert.ToDouble(letters[6]);
-                testNames.Add(testName);
+                testName.NameOne = letters[0];
+                testName.NameTwo = letters[1];
+                testName.CosineSimilarityMatchLevel = Convert.ToDouble(letters[6], CultureInfo.InvariantCulture);
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
         #region Block Distance Tests
-        [Test]
-        [Category("CosineSimilarity Test")]
+        [Fact]
+        // [Category("CosineSimilarity Test")]
         public void CosineSimilarityShortDescription()
         {
-            Assert.AreEqual("CosineSimilarity", myCosineSimilarity.ShortDescriptionString,
+            AssertUtil.Equal("CosineSimilarity", _myCosineSimilarity.ShortDescriptionString,
                             "Problem with CosineSimilarity test short description.");
         }
 
-        [Test]
-        [Category("CosineSimilarity Test")]
+        [Fact]
+        // [Category("CosineSimilarity Test")]
         public void CosineSimilarityTestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.CosineSimilarityMatchLevel.ToString("F3"),
-                                myCosineSimilarity.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
+                AssertUtil.Equal(testRecord.CosineSimilarityMatchLevel.ToString("F3"),
+                                _myCosineSimilarity.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
                                 string.Format("{0}CosineSimilarity{1}{2}{3}{4}", Environment.NewLine, Environment.NewLine,
-                                              testRecord.nameOne, Environment.NewLine, testRecord.nameTwo));
+                                              testRecord.NameOne, Environment.NewLine, testRecord.NameTwo));
             }
         }
         #endregion
 
-        CosineSimilarity myCosineSimilarity;
+        CosineSimilarity _myCosineSimilarity;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public CosineSimilarityUnitTests()
         {
             LoadData();
-            myCosineSimilarity = new CosineSimilarity();
+            _myCosineSimilarity = new CosineSimilarity();
         }
     }
 }

@@ -1,24 +1,25 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Globalization;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class DiceSimilarityUnitTests
     {
         #region Test Data Setup
         struct TestRecord
         {
-            public string nameOne;
-            public string nameTwo;
-            public double diceSimilarityMatchLevel;
+            public string NameOne;
+            public string NameTwo;
+            public double DiceSimilarityMatchLevel;
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
@@ -26,50 +27,50 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
             {
                 string[] letters = addChars.Split(',');
                 TestRecord testName;
-                testName.nameOne = letters[0];
-                testName.nameTwo = letters[1];
-                testName.diceSimilarityMatchLevel = Convert.ToDouble(letters[13]);
-                testNames.Add(testName);
+                testName.NameOne = letters[0];
+                testName.NameTwo = letters[1];
+                testName.DiceSimilarityMatchLevel = Convert.ToDouble(letters[13], CultureInfo.InvariantCulture);
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
         #region DiceSimilarity Tests
-        [Test]
-        [Category("DiceSimilarity Test")]
+        [Fact]
+        // [Category("DiceSimilarity Test")]
         public void DiceSimilarity_ShortDescription()
         {
-            Assert.AreEqual("DiceSimilarity", myDiceSimilarity.ShortDescriptionString,
+            AssertUtil.Equal("DiceSimilarity", _myDiceSimilarity.ShortDescriptionString,
                             "Problem with DiceSimilarity test short description.");
         }
 
-        [Test]
-        [Category("DiceSimilarity Test")]
+        [Fact]
+        // [Category("DiceSimilarity Test")]
         public void DiceSimilarity_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.diceSimilarityMatchLevel.ToString("F3"),
-                                myDiceSimilarity.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
-                                "Problem with DiceSimilarity test - " + testRecord.nameOne + ' ' + testRecord.nameTwo);
+                AssertUtil.Equal(testRecord.DiceSimilarityMatchLevel.ToString("F3"),
+                                _myDiceSimilarity.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
+                                "Problem with DiceSimilarity test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
         #endregion
 
-        DiceSimilarity myDiceSimilarity;
+        DiceSimilarity _myDiceSimilarity;
 
-        [SetUp]
-        public void SetUp()
+        //[SetUp]
+        public DiceSimilarityUnitTests()
         {
             LoadData();
-            myDiceSimilarity = new DiceSimilarity();
+            _myDiceSimilarity = new DiceSimilarity();
         }
     }
 }

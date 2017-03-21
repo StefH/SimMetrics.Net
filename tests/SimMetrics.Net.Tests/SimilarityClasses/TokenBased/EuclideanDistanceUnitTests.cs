@@ -1,23 +1,24 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Globalization;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class EuclideanDistanceUnitTests
     {
         #region Test Data Setup
         struct TestRecord
         {
-            public string nameOne;
-            public string nameTwo;
-            public double euclideanDistanceMatchLevel;
+            public string NameOne;
+            public string NameTwo;
+            public double EuclideanDistanceMatchLevel;
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
@@ -25,50 +26,50 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
             {
                 string[] letters = addChars.Split(',');
                 TestRecord testName;
-                testName.nameOne = letters[0];
-                testName.nameTwo = letters[1];
-                testName.euclideanDistanceMatchLevel = Convert.ToDouble(letters[14]);
-                testNames.Add(testName);
+                testName.NameOne = letters[0];
+                testName.NameTwo = letters[1];
+                testName.EuclideanDistanceMatchLevel = Convert.ToDouble(letters[14], CultureInfo.InvariantCulture);
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
         #region EuclideanDistance Tests
-        [Test]
-        [Category("EuclideanDistance Test")]
+        [Fact]
+        // [Category("EuclideanDistance Test")]
         public void EuclideanDistance_ShortDescription()
         {
-            Assert.AreEqual("EuclideanDistance", myEuclideanDistance.ShortDescriptionString,
+            AssertUtil.Equal("EuclideanDistance", _myEuclideanDistance.ShortDescriptionString,
                             "Problem with EuclideanDistance test short description.");
         }
 
-        [Test]
-        [Category("EuclideanDistance Test")]
+        [Fact]
+        // [Category("EuclideanDistance Test")]
         public void EuclideanDistance_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.euclideanDistanceMatchLevel.ToString("F3"),
-                                myEuclideanDistance.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
-                                "Problem with EuclideanDistance test - " + testRecord.nameOne + ' ' + testRecord.nameTwo);
+                AssertUtil.Equal(testRecord.EuclideanDistanceMatchLevel.ToString("F3"),
+                                _myEuclideanDistance.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
+                                "Problem with EuclideanDistance test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
         #endregion
 
-        EuclideanDistance myEuclideanDistance;
+        EuclideanDistance _myEuclideanDistance;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public EuclideanDistanceUnitTests()
         {
             LoadData();
-            myEuclideanDistance = new EuclideanDistance();
+            _myEuclideanDistance = new EuclideanDistance();
         }
     }
 }

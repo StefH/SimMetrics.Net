@@ -1,23 +1,24 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Globalization;
+using Xunit;
 using SimMetrics.Net.Metric;
 
 namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class MatchingCoefficientUnitTests
     {
         #region Test Data Setup
         struct TestRecord
         {
-            public string nameOne;
-            public string nameTwo;
-            public double matchingCoefficientMatchLevel;
+            public string NameOne;
+            public string NameTwo;
+            public double MatchingCoefficientMatchLevel;
         }
 
-        Settings addressSettings = Settings.Default;
-        List<TestRecord> testNames = new List<TestRecord>(26);
+        readonly Settings _addressSettings = Settings.Default;
+        readonly List<TestRecord> _testNames = new List<TestRecord>(26);
 
         void AddNames(string addChars)
         {
@@ -25,50 +26,50 @@ namespace SimMetrics.Net.Tests.SimilarityClasses.TokenBased
             {
                 string[] letters = addChars.Split(',');
                 TestRecord testName;
-                testName.nameOne = letters[0];
-                testName.nameTwo = letters[1];
-                testName.matchingCoefficientMatchLevel = Convert.ToDouble(letters[16]);
-                testNames.Add(testName);
+                testName.NameOne = letters[0];
+                testName.NameTwo = letters[1];
+                testName.MatchingCoefficientMatchLevel = Convert.ToDouble(letters[16], CultureInfo.InvariantCulture);
+                _testNames.Add(testName);
             }
         }
 
         void LoadData()
         {
-            AddNames(addressSettings.blockDistance1);
-            AddNames(addressSettings.blockDistance2);
-            AddNames(addressSettings.blockDistance3);
+            AddNames(_addressSettings.blockDistance1);
+            AddNames(_addressSettings.blockDistance2);
+            AddNames(_addressSettings.blockDistance3);
         }
         #endregion
 
         #region MatchingCoefficient Tests
-        [Test]
-        [Category("MatchingCoefficient Test")]
+        [Fact]
+        // [Category("MatchingCoefficient Test")]
         public void MatchingCoefficient_ShortDescription()
         {
-            Assert.AreEqual("MatchingCoefficient", myMatchingCoefficient.ShortDescriptionString,
+            AssertUtil.Equal("MatchingCoefficient", _myMatchingCoefficient.ShortDescriptionString,
                             "Problem with MatchingCoefficient test short description.");
         }
 
-        [Test]
-        [Category("MatchingCoefficient Test")]
+        [Fact]
+        // [Category("MatchingCoefficient Test")]
         public void MatchingCoefficient_TestData()
         {
-            foreach (TestRecord testRecord in testNames)
+            foreach (TestRecord testRecord in _testNames)
             {
-                Assert.AreEqual(testRecord.matchingCoefficientMatchLevel.ToString("F3"),
-                                myMatchingCoefficient.GetSimilarity(testRecord.nameOne, testRecord.nameTwo).ToString("F3"),
-                                "Problem with MatchingCoefficient test - " + testRecord.nameOne + ' ' + testRecord.nameTwo);
+                AssertUtil.Equal(testRecord.MatchingCoefficientMatchLevel.ToString("F3"),
+                                _myMatchingCoefficient.GetSimilarity(testRecord.NameOne, testRecord.NameTwo).ToString("F3"),
+                                "Problem with MatchingCoefficient test - " + testRecord.NameOne + ' ' + testRecord.NameTwo);
             }
         }
         #endregion
 
-        MatchingCoefficient myMatchingCoefficient;
+        MatchingCoefficient _myMatchingCoefficient;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public MatchingCoefficientUnitTests()
         {
             LoadData();
-            myMatchingCoefficient = new MatchingCoefficient();
+            _myMatchingCoefficient = new MatchingCoefficient();
         }
     }
 }

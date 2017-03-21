@@ -1,0 +1,41 @@
+dist: trusty
+
+sudo: required
+
+language: csharp
+
+mono: latest
+dotnet: 1.0.1
+
+script:
+# SRC : Restore and Build
+- dotnet restore src/SimMetrics.Net
+
+- dotnet build src/SimMetrics.Net --configuration Release --framework netstandard1.0
+
+- export FrameworkPathOverride=/usr/lib/mono/2.0-api
+- dotnet build src/SimMetrics.Net --configuration Release --framework net20
+- dotnet build src/SimMetrics.Net --configuration Release --framework net35
+
+- export FrameworkPathOverride=/usr/lib/mono/4.0-api
+- dotnet build src/SimMetrics.Net --configuration Release --framework net40
+
+- export FrameworkPathOverride=/usr/lib/mono/4.5
+- dotnet build src/SimMetrics.Net --configuration Release --framework net45
+
+# TEST : Restore and Build
+- dotnet restore tests/SimMetrics.Net.Tests
+
+- dotnet build tests/SimMetrics.Net.Tests --configuration Release --framework netcoreapp1.1
+
+# TEST : Execute
+- dotnet test tests/SimMetrics.Net.Tests/SimMetrics.Net.Tests.csproj --configuration Release --framework netcoreapp1.1
+
+# OpenCover and coveralls
+- nuget install OpenCover -ExcludeVersion
+- nuget install coveralls.net -ExcludeVersion
+- pip install codecov
+
+# - mono OpenCover/tools/OpenCover.Console.exe -target:"dotnet" -targetargs:"test .\tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --no-build -c Release /p:codecov=true" -register:user -oldstyle -safemode:off -returntargetcode -output:coverage.xml -filter:"+[SimMetrics.Net]*" 
+- codecov -f "coverage.xml"
+# - mono coveralls.net/tools/csmacnz.Coveralls.exe --opencover -i coverage.xml

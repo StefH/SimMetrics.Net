@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Chapman).</Description>
+    <AssemblyTitle>SimMetrics.Net</AssemblyTitle>
+    <VersionPrefix>1.0.2.0</VersionPrefix>
+    <Authors>Hamed Fathi;Stef Heyenrath</Authors>
+    <TargetFrameworks>net20;net35;net40;net45;netstandard1.0</TargetFrameworks>
+    <AssemblyName>SimMetrics.Net</AssemblyName>
+    <PackageId>SimMetrics.Net</PackageId>
+    <PackageTags>algorithms;artifical;intelligence</PackageTags>
+    <PackageReleaseNotes>Upgraded solution to VS2017</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/StefH/SimMetrics.Net</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/SimMetrics.Net/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/StefH/SimMetrics.Net</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="10.4.0">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
+    <PackageReference Include="LINQBridge" Version="1.3.0" />
+    <Reference Include="System" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <Reference Include="System" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

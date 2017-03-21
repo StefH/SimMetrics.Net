@@ -1,32 +1,32 @@
 using System;
 using System.Collections.ObjectModel;
-using NUnit.Framework;
+using Xunit;
 using SimMetrics.Net.Utilities;
 
 namespace SimMetrics.Net.Tests.UtilityClasses
 {
-    [TestFixture]
+    // [TestFixture]
     public sealed class TokenisersUnitTests
     {
         #region TokeniserQGram3 Tests
-        [Test]
-        [Category("TokeniserQGram3 Test")]
+        [Fact]
+        // [Category("TokeniserQGram3 Test")]
         public void TokeniserQGram3ShortDescription()
         {
-            Assert.AreEqual("TokeniserQGram3", myTokeniserQGram3.ShortDescriptionString,
+            AssertUtil.Equal("TokeniserQGram3", myTokeniserQGram3.ShortDescriptionString,
                             "Problem with TokeniserQGram3 test short description.");
         }
 
-        [Test]
-        [Category("TokeniserQGram3Extended Test")]
+        [Fact]
+        // [Category("TokeniserQGram3Extended Test")]
         public void TokeniserQGram3ExtendedShortDescription()
         {
-            Assert.AreEqual("TokeniserQGram3Extended", myTokeniserQGram3Extended.ShortDescriptionString,
+            AssertUtil.Equal("TokeniserQGram3Extended", myTokeniserQGram3Extended.ShortDescriptionString,
                             "Problem with TokeniserQGram3Extended test short description.");
         }
 
-        [Test]
-        [Category("TokeniserQGram3 Test")]
+        [Fact]
+        // [Category("TokeniserQGram3 Test")]
         public void TokeniserQGram3TestData()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -37,12 +37,12 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserQGram3.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram3 test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram3 test.");
             }
         }
 
-        [Test]
-        [Category("TokeniserQGram3 Test")]
+        [Fact]
+        // [Category("TokeniserQGram3 Test")]
         public void TokeniserQGram3ExtendedTestData()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -56,30 +56,30 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserQGram3Extended.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram3Extended test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram3Extended test.");
             }
         }
         #endregion
 
         #region TokeniserQGram2 Tests
-        [Test]
-        [Category("TokeniserQGram2 Test")]
+        [Fact]
+        // [Category("TokeniserQGram2 Test")]
         public void TokeniserQGram2ShortDescription()
         {
-            Assert.AreEqual("TokeniserQGram2", myTokeniserQGram2.ShortDescriptionString,
+            AssertUtil.Equal("TokeniserQGram2", myTokeniserQGram2.ShortDescriptionString,
                             "Problem with TokeniserQGram2 test short description.");
         }
 
-        [Test]
-        [Category("TokeniserQGram2Extended Test")]
+        [Fact]
+        // [Category("TokeniserQGram2Extended Test")]
         public void TokeniserQGram2ExtendedShortDescription()
         {
-            Assert.AreEqual("TokeniserQGram2Extended", myTokeniserQGram2Extended.ShortDescriptionString,
+            AssertUtil.Equal("TokeniserQGram2Extended", myTokeniserQGram2Extended.ShortDescriptionString,
                             "Problem with TokeniserQGram2Extended test short description.");
         }
 
-        [Test]
-        [Category("TokeniserQGram2 Test")]
+        [Fact]
+        // [Category("TokeniserQGram2 Test")]
         public void TokeniserQGram2TestData()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -91,12 +91,12 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserQGram2.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2 test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2 test.");
             }
         }
 
-        [Test]
-        [Category("TokeniserQGram2 CCI Test")]
+        [Fact]
+        // [Category("TokeniserQGram2 CCI Test")]
         public void TokeniserQGram2TestWithCci1_Data()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -112,12 +112,12 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserQGram2.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2 test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2 test.");
             }
         }
 
-        [Test]
-        [Category("TokeniserQGram2 Test")]
+        [Fact]
+        // [Category("TokeniserQGram2 Test")]
         public void TokeniserQGram2ExtendedTestData()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -130,12 +130,12 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserQGram2Extended.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2Extended test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2Extended test.");
             }
         }
 
-        [Test]
-        [Category("TokeniserQGram2 CCI Test")]
+        [Fact]
+        // [Category("TokeniserQGram2 CCI Test")]
         public void TokeniserQGram2ExtendedTestCc1_Data()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -154,13 +154,13 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserQGram2Extended.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2Extended test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2Extended test.");
             }
         }
         #endregion
 
         #region SGram tests
-        [Test]
+        [Fact]
         public void TokeniserSGram2ExtendedTesting_ToString()
         {
             myTokeniserSGram2Extended.Tokenize("CHRIS");
@@ -168,10 +168,10 @@ namespace SimMetrics.Net.Tests.UtilityClasses
                             Environment.NewLine + "The method is using a character combination index of " +
                             Convert.ToInt32(myTokeniserSGram2Extended.CharacterCombinationIndex) + " and " + Environment.NewLine +
                             "a QGram length of " + Convert.ToInt32(myTokeniserSGram2Extended.QGramLength) + ".";
-            Assert.AreEqual(result, myTokeniserSGram2Extended.ToString(), "ToString method");
+            AssertUtil.Equal(result, myTokeniserSGram2Extended.ToString(), "ToString method");
         }
 
-        [Test]
+        [Fact]
         public void TokeniserSGram2ExtendedTestCc1_Data()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -189,11 +189,11 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserSGram2Extended.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2Extended test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2Extended test.");
             }
         }
 
-        [Test]
+        [Fact]
         public void TokeniserSGram2TestWithCci1_Data()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -207,22 +207,22 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserSGram2.Tokenize("CHRIS");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2 test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserQGram2 test.");
             }
         }
         #endregion
 
         #region White Space Tests
-        [Test]
-        [Category("TokeniserWhitespace Test")]
+        [Fact]
+        // [Category("TokeniserWhitespace Test")]
         public void TokeniserWhitespaceShortDescription()
         {
-            Assert.AreEqual("TokeniserWhitespace", myTokeniserWhitespace.ShortDescriptionString,
+            AssertUtil.Equal("TokeniserWhitespace", myTokeniserWhitespace.ShortDescriptionString,
                             "Problem with TokeniserWhitespace test short description.");
         }
 
-        [Test]
-        [Category("TokeniserWhitespace Test")]
+        [Fact]
+        // [Category("TokeniserWhitespace Test")]
         public void TokeniserWhitespaceTestData()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -232,12 +232,12 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserWhitespace.Tokenize("CHRIS IS HERE");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserWhitespace test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserWhitespace test.");
             }
         }
 
-        [Test]
-        [Category("TokeniserWhitespace Test")]
+        [Fact]
+        // [Category("TokeniserWhitespace Test")]
         public void TokeniserWhitespaceDelimiterTest()
         {
             Collection<string> myKnownResult = new Collection<string>();
@@ -249,7 +249,7 @@ namespace SimMetrics.Net.Tests.UtilityClasses
             Collection<string> myResult = myTokeniserWhitespace.Tokenize("CHRIS\nIS\r HERE\twoo");
             for (int i = 0; i < myKnownResult.Count; i++)
             {
-                Assert.AreEqual(myKnownResult[i], myResult[i], "Problem with TokeniserWhitespace test.");
+                AssertUtil.Equal(myKnownResult[i], myResult[i], "Problem with TokeniserWhitespace test.");
             }
         }
         #endregion
@@ -262,8 +262,8 @@ namespace SimMetrics.Net.Tests.UtilityClasses
         TokeniserSGram2Extended myTokeniserSGram2Extended;
         TokeniserWhitespace myTokeniserWhitespace;
 
-        [SetUp]
-        public void SetUp()
+        // [SetUp]
+        public TokenisersUnitTests()
         {
             myTokeniserQGram3 = new TokeniserQGram3();
             myTokeniserQGram3Extended = new TokeniserQGram3Extended();
