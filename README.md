@@ -18,4 +18,4 @@ Supported frameworks are:
 - .NETStandard 1.0 to .NETStandard 1.6 (including portable, windows phone and uap)
 
 
-Based on https://github.com/HamedFathi/SimMetricsCore with all the 87+ unit-tests from the orginal project.
+Based on https://github.com/HamedFathi/SimMetricsCore with all the 87 unit-tests from the orginal project.

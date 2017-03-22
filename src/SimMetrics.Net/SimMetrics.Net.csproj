@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Chapman).</Description>
     <AssemblyTitle>SimMetrics.Net</AssemblyTitle>
-    <VersionPrefix>1.0.2.0</VersionPrefix>
+    <VersionPrefix>1.0.3.0</VersionPrefix>
     <Authors>Hamed Fathi;Stef Heyenrath</Authors>
     <TargetFrameworks>net20;net35;net40;net45;netstandard1.0</TargetFrameworks>
     <AssemblyName>SimMetrics.Net</AssemblyName>
@@ -14,6 +14,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/StefH/SimMetrics.Net/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StefH/SimMetrics.Net</RepositoryUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,8 +43,6 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-    <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
