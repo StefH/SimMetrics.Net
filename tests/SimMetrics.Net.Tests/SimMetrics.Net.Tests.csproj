@@ -6,6 +6,7 @@
     <AssemblyName>SimMetrics.Net.Tests</AssemblyName>
     <PackageId>SimMetrics.Net.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.1'">

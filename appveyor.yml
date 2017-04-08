@@ -36,6 +36,6 @@ after_test:
   - nuget.exe install coveralls.net -ExcludeVersion
   - pip install codecov
 
-  - cmd: '"OpenCover\tools\OpenCover.Console.exe" -target:dotnet.exe -targetargs:"test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION% --framework netcoreapp1.1" -searchdirs:tests\SimMetrics.Net.Tests\bin\Release\netcoreapp1.1 -output:coverage.xml -register:user -filter:+[SimMetrics.Net]* -returntargetcode -oldstyle'
+  - cmd: '"OpenCover\tools\OpenCover.Console.exe" -target:dotnet.exe -targetargs:"test tests\SimMetrics.Net.Tests\SimMetrics.Net.Tests.csproj --configuration %CONFIGURATION%  --no-build" -output:coverage.xml -register:user -filter:"+[SimMetrics.Net]* -[SimMetrics.Net.Tests]*" -returntargetcode -register:user -oldstyle'
   - codecov -f "coverage.xml"
   - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\coverage.xml
