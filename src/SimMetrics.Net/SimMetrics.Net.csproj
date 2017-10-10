@@ -3,9 +3,9 @@
   <PropertyGroup>
     <Description>SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Chapman).</Description>
     <AssemblyTitle>SimMetrics.Net</AssemblyTitle>
-    <VersionPrefix>1.0.3.0</VersionPrefix>
+    <VersionPrefix>1.0.4.0</VersionPrefix>
     <Authors>Hamed Fathi;Stef Heyenrath</Authors>
-    <TargetFrameworks>net20;net35;net40;net45;netstandard1.0</TargetFrameworks>
+    <TargetFrameworks>net20;net35;net40;net45;netstandard1.0;netstandard2.0</TargetFrameworks>
     <AssemblyName>SimMetrics.Net</AssemblyName>
     <PackageId>SimMetrics.Net</PackageId>
     <PackageTags>algorithms;artifical;intelligence</PackageTags>
