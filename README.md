@@ -1,5 +1,5 @@
 # SimMetrics.Net
-SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Chapman).
+SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenstein, etc) to other metrics (Chapman, etc).
 
 |   | Status |
 | - | ------ |
