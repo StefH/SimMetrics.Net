@@ -9,8 +9,28 @@ SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenstein
 | `coveralls.io` | [![Coverage Status](https://coveralls.io/repos/github/StefH/SimMetrics.Net/badge.svg?branch=master)](https://coveralls.io/github/StefH/SimMetrics.Net?branch=master) |
 | `NuGet` | [![NuGet Badge](https://buildstats.info/nuget/SimMetrics.Net)](https://www.nuget.org/packages/SimMetrics.Net) |
 
-Supported frameworks are:
+## Supported similarities:
 
+- BlockDistance
+- ChapmanLengthDeviation
+- ChapmanMeanLength
+- CosineSimilarity
+- DiceSimilarity
+- EuclideanDistance
+- JaccardSimilarity
+- Jaro 
+- JaroWinkler 
+- Levenstein *[Default]*
+- MatchingCoefficient 
+- MongeElkan
+- NeedlemanWunch 
+- OverlapCoefficient
+- QGramsDistance
+- SmithWaterman 
+- SmithWatermanGotoh
+- SmithWatermanGotohWindowedAffine
+
+## Supported frameworks:
 - .NET 2.0
 - .NET 3.5
 - .NET 4.0
