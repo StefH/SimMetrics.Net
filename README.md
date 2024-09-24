@@ -7,7 +7,7 @@ SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenstein
 | `Travis` | [![Build Status](https://travis-ci.org/StefH/SimMetrics.Net.svg?branch=_vs2017)](https://travis-ci.org/StefH/SimMetrics.Net) |
 | `codecov.io` | [![codecov](https://codecov.io/gh/StefH/SimMetrics.Net/branch/master/graph/badge.svg)](https://codecov.io/gh/StefH/SimMetrics.Net) |
 | `coveralls.io` | [![Coverage Status](https://coveralls.io/repos/github/StefH/SimMetrics.Net/badge.svg?branch=master)](https://coveralls.io/github/StefH/SimMetrics.Net?branch=master) |
-| `NuGet` | [![NuGet Badge](https://buildstats.info/nuget/SimMetrics.Net)](https://www.nuget.org/packages/SimMetrics.Net) |
+| `NuGet` | [![NuGet Badge](https://img.shields.io/nuget/v/SimMetrics.Net)](https://www.nuget.org/packages/SimMetrics.Net) |
 
 ## Supported similarities:
 
