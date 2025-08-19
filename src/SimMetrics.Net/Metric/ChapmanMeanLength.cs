@@ -3,6 +3,11 @@ using SimMetrics.Net.API;
 
 namespace SimMetrics.Net.Metric
 {
+    /// <summary>
+    /// This method only the lengths of the two words, not at the actual characters.
+    /// It uses some cutoff(ChapmanMeanLengthMaxString) and a polynomial scaling(1 - num2^4) to produce a score.
+    /// That means it's really a length-based heuristic similarity, not Chapman Mean Length.
+    /// </summary>
     public sealed class ChapmanMeanLength : AbstractStringMetric
     {
         private const int ChapmanMeanLengthMaxString = 500;
@@ -39,9 +44,8 @@ namespace SimMetrics.Net.Metric
             return GetSimilarity(firstWord, secondWord);
         }
 
-        public override string LongDescriptionString => "Implements the Chapman Mean Length algorithm provides a similarity measure between two strings from size of the mean length of the vectors - this approach is suppossed to be used to determine which metrics may be best to apply rather than giveing a valid response itself";
+        public override string LongDescriptionString => "Implements the Chapman Mean Length algorithm provides a similarity measure between two strings from size of the mean length of the vectors - this approach is suppossed to be used to determine which metrics may be best to apply rather than giving a valid response itself";
 
         public override string ShortDescriptionString => "ChapmanMeanLength";
     }
 }
-

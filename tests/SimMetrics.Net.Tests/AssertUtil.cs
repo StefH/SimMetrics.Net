@@ -1,17 +1,16 @@
 ﻿using Xunit;
 
-namespace SimMetrics.Net.Tests
-{
-    internal static class AssertUtil
-    {
-        public static void Equal<T>(T expected, T actual)
-        {
-            Assert.Equal(expected, actual);
-        }
+namespace SimMetrics.Net.Tests;
 
-        public static void Equal<T>(T expected, T actual, string message)
-        {
-            Assert.True(expected.Equals(actual), message);
-        }
+internal static class AssertUtil
+{
+    public static void Equal<T>(T expected, T actual)
+    {
+        Assert.Equal(expected, actual);
+    }
+
+    public static void Equal<T>(T expected, T actual, string message)
+    {
+        Assert.True(expected.Equals(actual), message);
     }
 }
