@@ -15,7 +15,9 @@ namespace SimMetrics.Net
                 var num = l.ApproximatelyEquals(word, simMetricType);
                 var thr = 1 - num;
                 if (thr <= threshold)
+                {
                     newList.Add(l);
+                }
             }
             return newList;
         }
