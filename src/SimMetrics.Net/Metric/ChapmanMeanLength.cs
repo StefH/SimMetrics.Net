@@ -4,7 +4,7 @@ using SimMetrics.Net.API;
 namespace SimMetrics.Net.Metric
 {
     /// <summary>
-    /// This method only the lengths of the two words, not at the actual characters.
+    /// This method uses only the lengths of the two words, not the actual characters.
     /// It uses some cutoff(ChapmanMeanLengthMaxString) and a polynomial scaling(1 - num2^4) to produce a score.
     /// That means it's really a length-based heuristic similarity, not Chapman Mean Length.
     /// </summary>
